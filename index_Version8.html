@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be Mine?</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe6f7 0%, #ffc3e5 100%);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    /* SVG clouds styling */
+    .svg-cloud {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.8;
+    }
+    .cloud1 { top: 40px; left: 30px; width: 230px; }
+    .cloud2 { top: 160px; right: 90px; width: 140px; }
+    .cloud3 { bottom: 80px; left: 120px; width: 180px; }
+    .cloud4 { bottom: 20px; right: 60px; width: 220px; }
+    .cloud5 { top: 70%; left: 60vw; width: 160px; }
+    .cloud6 { top: 55%; left: 12vw; width: 130px; }
+    .question-container {
+      width: 100vw;
+      position: absolute;
+      top: 7%;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 2;
+    }
+    .question {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #e94d8b;
+      background: rgba(255,255,255,0.75);
+      border-radius: 24px;
+      padding: 24px 38px;
+      box-shadow: 0 4px 18px rgba(233,77,139,0.10);
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 2px 10px #ffc3e5;
+    }
+    .options-container {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 60px;
+      z-index: 3;
+    }
+    .option-btn {
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 18px 44px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 12px rgba(255,105,180,0.13);
+      background: #fff;
+      color: #e94d8b;
+      outline: none;
+      position: relative;
+    }
+    .option-btn.yes {
+      background: linear-gradient(90deg, #ffb6d5 0%, #ffe6f7 100%);
+      color: #c2185b;
+      box-shadow: 0 2px 18px #ffc3e5;
+    }
+    .option-btn.no {
+      background: linear-gradient(90deg, #f8bbd0 0%, #fce4ec 100%);
+      color: #ad1457;
+    }
+    @keyframes move-no {
+      0%   { transform: translate(0, 0);}
+      12%  { transform: translate(60px, -30px);}
+      25%  { transform: translate(-80px, 20px);}
+      37%  { transform: translate(90px, 40px);}
+      50%  { transform: translate(-60px, -30px);}
+      62%  { transform: translate(60px, 20px);}
+      75%  { transform: translate(-30px, 10px);}
+      87%  { transform: translate(30px, -20px);}
+      100% { transform: translate(0, 0);}
+    }
+    .option-btn.no.moving {
+      animation: move-no 0.8s cubic-bezier(.49,-0.15,.47,1.51);
+    }
+    .response-message {
+      display: none;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      font-size: 2.3rem;
+      font-weight: bold;
+      color: #ff69b4;
+      background: rgba(255,255,255,0.90);
+      border-radius: 22px;
+      padding: 24px 36px;
+      box-shadow: 0 2px 18px rgba(255,105,180,0.25);
+      z-index: 5;
+      animation: fadein 0.9s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translate(-50%, 40px);}
+      to { opacity: 1; transform: translate(-50%, 0);}
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Clouds (Not ovals, look like cartoon clouds) -->
+  <svg class="svg-cloud cloud1" viewBox="0 0 230 100">
+    <ellipse cx="65" cy="65" rx="55" ry="35" fill="#fff"/>
+    <ellipse cx="120" cy="50" rx="60" ry="40" fill="#fff"/>
+    <ellipse cx="170" cy="70" rx="45" ry="28" fill="#fff"/>
+    <ellipse cx="100" cy="90" rx="30" ry="18" fill="#fff"/>
+  </svg>
+  <svg class="svg-cloud cloud2" viewBox="0 0 140 70">
+    <ellipse cx="40" cy="40" rx="35" ry="18" fill="#fff"/>
+    <ellipse cx="95" cy="35" rx="30" ry="18" fill="#fff"/>
+    <ellipse cx="70" cy="55" rx="25" ry="13" fill="#fff"/>
+  </svg>
+  <svg class="svg-cloud cloud3" viewBox="0 0 180 80">
+    <ellipse cx="50" cy="50" rx="40" ry="25" fill="#fff"/>
+    <ellipse cx="115" cy="38" rx="50" ry="24" fill="#fff"/>
+    <ellipse cx="140" cy="65" rx="30" ry="15" fill="#fff"/>
+  </svg>
+  <svg class="svg-cloud cloud4" viewBox="0 0 220 90">
+    <ellipse cx="70" cy="60" rx="55" ry="25" fill="#fff"/>
+    <ellipse cx="140" cy="40" rx="45" ry="22" fill="#fff"/>
+    <ellipse cx="180" cy="70" rx="30" ry="13" fill="#fff"/>
+  </svg>
+  <svg class="svg-cloud cloud5" viewBox="0 0 160 60">
+    <ellipse cx="45" cy="35" rx="35" ry="17" fill="#fff"/>
+    <ellipse cx="110" cy="25" rx="40" ry="20" fill="#fff"/>
+  </svg>
+  <svg class="svg-cloud cloud6" viewBox="0 0 130 50">
+    <ellipse cx="40" cy="30" rx="25" ry="13" fill="#fff"/>
+    <ellipse cx="90" cy="20" rx="30" ry="15" fill="#fff"/>
+  </svg>
+  <div class="question-container">
+    <div class="question">
+      WILL YOU BE MINE ?
+    </div>
+  </div>
+  <div class="options-container">
+    <button class="option-btn yes">YES</button>
+    <button class="option-btn no">NO</button>
+  </div>
+  <div class="response-message" id="responseMsg">
+    AWW!!!
+  </div>
+  <script>
+    const noBtn = document.querySelector('.option-btn.no');
+    const yesBtn = document.querySelector('.option-btn.yes');
+    const responseMsg = document.getElementById('responseMsg');
+    noBtn.addEventListener('mouseenter', moveNoBtn);
+    noBtn.addEventListener('click', moveNoBtn);
+    function moveNoBtn(e) {
+      noBtn.classList.add('moving');
+      setTimeout(() => {
+        noBtn.classList.remove('moving');
+      }, 800);
+    }
+    yesBtn.addEventListener('click', () => {
+      responseMsg.style.display = 'block';
+      yesBtn.disabled = true;
+      noBtn.disabled = true;
+      yesBtn.style.opacity = 0.6;
+      noBtn.style.opacity = 0.6;
+    });
+  </script>
+</body>
+</html>
